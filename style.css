@@ -1,0 +1,96 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+    width:100vw;
+    overflow-x:hidden;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.container-fluid {
+    max-width: 1050px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 5px;
+}
+
+main {
+    margin-bottom: 100px;
+}
+
+.search {
+    margin-bottom: 20px;
+}
+
+.num-cab {
+    
+}
+
+.floor-btn {
+    
+    background-color: transparent;
+    border: none;
+    cursor: default;
+}
+
+.floor-title {
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 7px;
+    padding: 10px 10px 10px 3px;
+    border: 1px solid black;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all .1s linear;
+}
+
+.floor-title:hover {
+    border-color: #008b8b !important;
+}
+
+.floor-title:hover .floor-icon {
+    color: darkcyan;
+}
+
+.floor-icon {
+    transition: all .1s linear;
+}
+
+.floor-list {
+    display: flex;
+    justify-content: space-between;
+}
+
+.floor-item {
+    width: 100%;
+    border: 1px solid black;
+    border-right: 0;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.floor-item:last-child {
+    border-right: 1px solid black;
+
+}
+
+.floor-map img {
+    width: 100%;
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
