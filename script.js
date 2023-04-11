@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
             elem.style.backgroundColor = "transparent";
         })
         floorItems[ind].style.backgroundColor = "darkcyan";
-        // item.style.backgroundColor = "darkcyan";
     }
 
     function changeIconArrow(nav) {
@@ -31,13 +30,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
         floorTitle.appendChild(icon);
     }
 
-    function getMap(numFloor) {        
-        if (numFloor > 5 || numFloor < 1) {
+    function getMap(numFloor) {          
+        if (+numFloor > 5 || +numFloor < 1) {
             document.querySelector(".floor-number").textContent = `Этажа №${numFloor} не существует`;
             document.querySelector(".floor-map").textContent = "Ошибка";
             return;
         } 
         document.querySelector(".floor-number").textContent = `Этаж №${numFloor}`;
+        document.querySelector(".floor-btn").textContent = `Этаж ${numFloor}`;
 
         let img = document.createElement("img");
         img.onload = function () {
@@ -53,7 +53,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
     document.querySelector(".search").addEventListener("click", (e) => {
         e.preventDefault();
         getMap(document.querySelector(".num-cab").value[0]);
+        
         document.querySelector(".searchForm").reset();
+
     });
 
     if (window.matchMedia("(max-width: 750px)").matches) {
@@ -88,12 +90,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
         floorItems.forEach((item, ind) => {
 
-            item.addEventListener("click", (e) => {
-                document.querySelector(".floor-btn").textContent = item.textContent;
+            item.addEventListener("click", (e) => {                
                 show();
                 fillBackGround(ind);
-                
-                getMap(ind + 1);
+
+                getMap(item.getAttribute("data-value").slice(-1));
             })
 
             item.addEventListener("mouseover", e => {
@@ -125,8 +126,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
             item.addEventListener("click", (e) => {
                 document.querySelector(".floor-btn").textContent = item.textContent;
                 fillBackGround(ind);                
-
-                getMap(ind+1);
+                
+                getMap(item.getAttribute("data-value").slice(-1));
             })
 
             item.addEventListener("mouseover", e => {
