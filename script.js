@@ -2,6 +2,27 @@
 
 document.addEventListener("DOMContentLoaded", (event) => {
 
+    Init();
+
+    function Init () {
+        var myTextbox = document.getElementById('checkinput');
+        myTextbox.addEventListener( 'keypress', checkName, false );
+    }
+    
+    function checkName(evt) {
+        let charCode = evt.charCode;
+        if (charCode != 0) {
+            if (charCode < 48 || charCode > 57) {
+                evt.preventDefault();
+                alert(
+                    "Пожалуйста, используйте только цифры"
+                );
+            }
+        }
+    }
+
+
+
     const floorTitle = document.querySelector(".floor-title"),
         floorList = document.querySelector(".floor-list"),
         floorItems = document.querySelectorAll(".floor-item");
