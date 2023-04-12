@@ -2,23 +2,18 @@
 
 document.addEventListener("DOMContentLoaded", (event) => {
 
-    Init();
+    var name = document.querySelector('#checkinput');
+    var regex = /[А-яЁёA-Za-z]/g; 
+ 
+    name.oninput = function(){
 
-    function Init () {
-        var myTextbox = document.getElementById('checkinput');
-        myTextbox.addEventListener( 'keypress', checkName, false );
-    }
-    
-    function checkName(evt) {
-        let charCode = evt.charCode;
-        if (charCode != 0) {
-            if (charCode < 48 || charCode > 57) {
-                evt.preventDefault();
-                alert(
-                    "Пожалуйста, используйте только цифры"
-                );
-            }
-        }
+        if (this.value.match(regex)) {
+            this.value = this.value.replace(regex, '');
+            document.querySelector(".floor-map").textContent = "Пожалуйста, используйте только цифры"
+      }
+      else{
+        document.querySelector(".floor-map").textContent = "";
+      }
     }
 
 
