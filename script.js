@@ -3,7 +3,7 @@
 document.addEventListener("DOMContentLoaded", (event) => {
 
     var name = document.querySelector('#checkinput');
-    var regex = /[А-яЁёA-Za-z]/g; 
+    var regex = /[А-яЁёA-Za-z | \W]/g; 
  
     name.oninput = function(){
 
