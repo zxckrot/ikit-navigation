@@ -3,24 +3,24 @@
 document.addEventListener("DOMContentLoaded", (event) => {
 
     var name = document.querySelector('#checkinput');
-    var regex = /[А-яЁёA-Za-z | \W | _]/g; 
- 
-    name.oninput = function(){
+    var regex = /[А-яЁёA-Za-z | \W | _]/g;
+
+    name.oninput = function () {
 
         if (this.value.match(regex)) {
             this.value = this.value.replace(regex, '');
-            document.querySelector(".floor-map").textContent = "Пожалуйста, используйте только цифры"
-      }
-      else{
-        document.querySelector(".floor-map").textContent = "";
-      }
+            document.querySelector(".msg-error").textContent = "Пожалуйста, используйте только цифры"
+        } else {
+            document.querySelector(".msg-error").textContent = "";
+        }
     }
 
 
 
     const floorTitle = document.querySelector(".floor-title"),
         floorList = document.querySelector(".floor-list"),
-        floorItems = document.querySelectorAll(".floor-item");
+        floorItems = document.querySelectorAll(".floor-item"),
+        searchForm = document.querySelector(".search-form");
 
     function show() {
         floorList.classList.remove("hide");
@@ -46,12 +46,17 @@ document.addEventListener("DOMContentLoaded", (event) => {
         floorTitle.appendChild(icon);
     }
 
-    function getMap(numFloor) {          
+    function getMap(numFloor) {
         if (+numFloor > 5 || +numFloor < 1) {
             document.querySelector(".floor-number").textContent = `Этажа №${numFloor} не существует`;
             document.querySelector(".floor-map").textContent = "Ошибка";
+            document.querySelector(".floor-btn").textContent = "Выберите этаж";
+            floorItems.forEach(item => item.style.backgroundColor = "transparent");
             return;
-        } 
+        }
+
+        document.querySelector(".msg-error").textContent = "";
+
         document.querySelector(".floor-number").textContent = `Этаж №${numFloor}`;
         document.querySelector(".floor-btn").textContent = `Этаж ${numFloor}`;
 
@@ -62,15 +67,19 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }
         img.onerror = function () { document.querySelector(".floor-map").textContent = "Ошибка"; };
         img.src = `./img/floor${numFloor}.png`;
-        
+
         fillBackGround(numFloor - 1);
     }
 
-    document.querySelector(".search").addEventListener("click", (e) => {
+    searchForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        getMap(document.querySelector(".num-cab").value[0]);
-        
-        document.querySelector(".searchForm").reset();
+        if (document.querySelector(".num-cab").value.length < 3) {            
+            document.querySelector(".msg-error").textContent = "Цифр должно быть 3";            
+        } else {
+            getMap(document.querySelector(".num-cab").value[0]);
+
+            searchForm.reset();
+        }
 
     });
 
@@ -106,7 +115,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
         floorItems.forEach((item, ind) => {
 
-            item.addEventListener("click", (e) => {                
+            item.addEventListener("click", (e) => {
                 show();
                 fillBackGround(ind);
 
@@ -141,8 +150,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
         floorItems.forEach((item, ind) => {
             item.addEventListener("click", (e) => {
                 document.querySelector(".floor-btn").textContent = item.textContent;
-                fillBackGround(ind);                
-                
+                fillBackGround(ind);
+
                 getMap(item.getAttribute("data-value").slice(-1));
             })
 

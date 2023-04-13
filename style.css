@@ -28,7 +28,7 @@ main {
 }
 
 .search {
-    margin-bottom: 20px;
+    
 }
 
 .num-cab {
@@ -87,6 +87,10 @@ main {
 
 .floor-map img {
     width: 100%;
+}
+
+.msg-error {
+    color: red;
 }
 
 .show {
