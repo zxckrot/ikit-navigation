@@ -32,11 +32,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
         floorList.classList.add("hide");
     }
 
-    function fillBackGround(ind) {
+    function fillBackGround(numFloor) {
         floorItems.forEach(elem => {
-            elem.style.backgroundColor = "transparent";
-        })
-        floorItems[ind].style.backgroundColor = "darkcyan";
+            if (parseInt(elem.getAttribute("data-value")) === numFloor) {
+                elem.style.backgroundColor = "darkcyan";
+            } else {
+                elem.style.backgroundColor = "transparent";
+            }
+        })        
     }
 
     function changeIconArrow(nav) {
@@ -47,9 +50,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
 
     function getMap(numFloor) {
-        if (+numFloor > 5 || +numFloor < 1) {
+        if (+numFloor > 5 || +numFloor < 0) {
             document.querySelector(".floor-number").textContent = `Этажа №${numFloor} не существует`;
-            document.querySelector(".floor-map").textContent = "Ошибка";
+            document.querySelector(".floor-map").textContent = "Ошибка, карта не найдена";
             document.querySelector(".floor-btn").textContent = "Выберите этаж";
             floorItems.forEach(item => item.style.backgroundColor = "transparent");
             return;
@@ -65,10 +68,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
             document.querySelector(".floor-map").textContent = "";
             document.querySelector(".floor-map").append(img);
         }
-        img.onerror = function () { document.querySelector(".floor-map").textContent = "Ошибка"; };
-        img.src = `./img/floor${numFloor}.png`;
+        img.onerror = function () { document.querySelector(".floor-map").textContent = "Ошибка, карта не найдена"; };
+        img.src = `./img/${numFloor}floor.png`;
 
-        fillBackGround(numFloor - 1);
+        fillBackGround(numFloor);
     }
 
     searchForm.addEventListener("submit", (e) => {
@@ -76,7 +79,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         if (document.querySelector(".num-cab").value.length < 3) {            
             document.querySelector(".msg-error").textContent = "Цифр должно быть 3";            
         } else {
-            getMap(document.querySelector(".num-cab").value[0]);
+            getMap(+document.querySelector(".num-cab").value[0]);
 
             searchForm.reset();
         }
@@ -117,9 +120,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
             item.addEventListener("click", (e) => {
                 show();
-                fillBackGround(ind);
 
-                getMap(item.getAttribute("data-value").slice(-1));
+                getMap(parseInt(item.getAttribute("data-value")));
             })
 
             item.addEventListener("mouseover", e => {
@@ -150,9 +152,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
         floorItems.forEach((item, ind) => {
             item.addEventListener("click", (e) => {
                 document.querySelector(".floor-btn").textContent = item.textContent;
-                fillBackGround(ind);
 
-                getMap(item.getAttribute("data-value").slice(-1));
+                getMap(parseInt(item.getAttribute("data-value")));
             })
 
             item.addEventListener("mouseover", e => {
