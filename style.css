@@ -80,6 +80,7 @@ main {
 .floor-list {
     display: flex;
     justify-content: space-between;
+    
 }
 
 .floor-item {
@@ -98,6 +99,7 @@ main {
 
 .floor-map img {
     width: 100%;
+    margin-bottom: 10px;
 }
 
 .msg-error {
