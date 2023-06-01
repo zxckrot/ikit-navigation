@@ -66,11 +66,11 @@ main {
 }
 
 .floor-title:hover {
-    border-color: #008b8b !important;
+    border-color: #1070FF !important;
 }
 
 .floor-title:hover .floor-icon {
-    color: darkcyan;
+    color: #1070FF;
 }
 
 .floor-icon {

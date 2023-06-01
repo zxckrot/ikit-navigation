@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     function fillBackGround(numFloor) {
         floorItems.forEach(elem => {
             if (parseInt(elem.getAttribute("data-value")) === numFloor) {
-                elem.style.backgroundColor = "darkcyan";
+                elem.style.backgroundColor = "#1070FF";
             } else {
                 elem.style.backgroundColor = "transparent";
             }
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     function getMap(numFloor) {
         if (+numFloor > 5 || +numFloor < 0) {
-            document.querySelector(".floor-number").textContent = `Этажа №${numFloor} не существует`;
+            document.querySelector(".floor-number").textContent = `${numFloor} этажа не существует`;
             document.querySelector(".floor-map").textContent = "Ошибка, карта не найдена";
             document.querySelector(".floor-btn").textContent = "Выберите этаж";
             floorItems.forEach(item => item.style.backgroundColor = "transparent");
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
         document.querySelector(".msg-error").textContent = "";
 
-        document.querySelector(".floor-number").textContent = `Этаж №${numFloor}`;
+        document.querySelector(".floor-number").textContent = `${numFloor} этаж`;
         document.querySelector(".floor-btn").textContent = `Этаж ${numFloor}`;
 
         let img = document.createElement("img");
@@ -105,8 +105,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
                 changeIconArrow("up");
 
-                floorTitle.style.borderColor = "darkcyan";
-                document.querySelector(".floor-icon").style.color = "darkcyan";
+                floorTitle.style.borderColor = "#1070FF";
+                document.querySelector(".floor-icon").style.color = "#1070FF";
             } else if (floorList.classList.contains("show")) {
                 hide();
 
