@@ -5,7 +5,9 @@
   margin: 0;
 }
 
-H1 { text-align: center }
+H1 { 
+    text-align: center;
+}
 
 html {
     width:100vw;
