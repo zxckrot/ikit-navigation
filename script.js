@@ -105,8 +105,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
                 changeIconArrow("up");
 
-                floorTitle.style.borderColor = "darkcyan";
-                document.querySelector(".floor-icon").style.color = "darkcyan";
+                floorTitle.style.borderColor = "#1070FF";
+                document.querySelector(".floor-icon").style.color = "#1070FF";
             } else if (floorList.classList.contains("show")) {
                 hide();
 
